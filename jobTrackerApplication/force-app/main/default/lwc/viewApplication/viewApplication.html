@@ -1,0 +1,74 @@
+<template>
+    <lightning-card title="Job Application Details" icon-name="custom:custom64">
+
+        <div class="slds-p-around_medium">
+            <template if:true={selectedJob}>
+                <div class="slds-m-bottom_large">
+                    <lightning-button-icon icon-name="utility:edit" variant="brand" alternative-text="Edit"
+                        class="slds-m-left_xx-small" title="Edit" onclick={handleEdit}></lightning-button-icon>
+                </div>
+                <div class="slds-grid slds-wrap slds-gutters">
+                    <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                        <strong>Job Title:</strong>
+                        <div class="slds-text-title">{selectedJob.Position_Title__c}</div>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                        <strong>Company Name:</strong>
+                        <div class="slds-text-title">{selectedJob.Company_Name__c}</div>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                        <strong>Status:</strong>
+                        <div class="slds-text-title">{selectedJob.Status__c}</div>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-2 slds-p-bottom_small">
+                        <strong>Job URL:</strong>
+                        <div class="slds-text-title">
+                            <a href={selectedJob.URL__c} target="_blank" rel="noopener noreferrer">View Posting</a>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <template if:true={error}>
+                <div class="slds-text-color_error slds-m-top_medium">
+                    {error}
+                </div>
+            </template>
+        </div>
+
+        <template if:true={isEditClicked}>
+            <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+                class="slds-modal slds-fade-in-open slds-modal_small">
+                <div class="slds-modal__container">
+                    <button class="slds-button slds-button_icon slds-modal__close" onclick={handleCancelClick}>
+                        <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                        </svg>
+                        <span class="slds-assistive-text">Cancel and close</span>
+                    </button>
+                    <div class="slds-modal__header">
+                        <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Edit Job</h1>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <lightning-record-edit-form object-api-name="Job_Tracker__c" record-id={editableJobId} onsuccess={handleSuccess}>
+                            <lightning-input-field field-name="Position_Title__c"></lightning-input-field>
+                            <lightning-input-field field-name="Company_Name__c"></lightning-input-field>
+                            <lightning-input-field field-name="Status__c"></lightning-input-field>
+                            <div class="slds-var-m-top_medium">
+                                <lightning-button variant="brand" type="submit" label="Save"></lightning-button>
+                            </div>
+                        </lightning-record-edit-form>
+                    </div>
+                    <div class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" onclick={handleCancelClick}>Cancel</button>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+    </lightning-card>
+</template>

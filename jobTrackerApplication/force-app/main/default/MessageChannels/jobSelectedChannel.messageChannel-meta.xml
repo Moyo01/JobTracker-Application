@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Job Selected Channel</masterLabel>
+    <isExposed>true</isExposed>
+    <description>Channel to pass selected job Id</description>
+    <lightningMessageFields>
+        <fieldName>jobId</fieldName>
+    </lightningMessageFields>
+</LightningMessageChannel>

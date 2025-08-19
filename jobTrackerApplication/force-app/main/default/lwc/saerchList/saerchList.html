@@ -1,0 +1,24 @@
+<template>
+    <div style="background: white; border-radius: 10px;">
+        
+      
+        <div class="slds-m-around_medium">
+            <div class="slds-m-left_small slds-m-right_small slds-m-bottom_small">
+                <c-search-job onsearch={handleSearch}></c-search-job>
+            </div>
+
+           <template if:true={jobRecords}>
+               <div class="slds-grid slds-wrap ">
+                <c-job-tile job-records={jobRecords} onselectjob={handleJobSelect}></c-job-tile>
+               </div>
+           </template>
+               
+            <!-- No Results Message -->
+            <template if:true={noResults}>
+                <div class="slds-text-align_center slds-m-around_medium">
+                    No jobs found matching your search criteria.
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

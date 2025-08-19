@@ -1,0 +1,62 @@
+<template>
+    <lightning-card title="Take-Home Pay Calculator" icon-name="custom:custom64">
+        <div class="slds-p-around_medium">
+
+            <!-- HIGHLIGHTED TAKE HOME PAY -->
+            <div class="slds-text-heading_medium slds-text-color_success slds-m-bottom_medium">
+                <strong>Take Home Pay: </strong> ${takehome}
+            </div>
+
+            <lightning-input 
+                type="number" 
+                label="Salary" 
+                value={salary} 
+                onchange={handleSalaryChange}>
+            </lightning-input>
+
+            <lightning-combobox
+                name="taxStatus"
+                label="Tax Filing Status"
+                value={taxStatus}
+                placeholder="Select Status"
+                options={taxStatusOptions}
+                onchange={handleTaxStatusChange}>
+            </lightning-combobox>
+
+            <div class="slds-m-top_large">
+                <lightning-button 
+                    label="Calculate" 
+                    variant="brand" 
+                    class="slds-m-top_medium" 
+                    onclick={calculateTakeHome}>
+                </lightning-button>
+            </div>
+
+            <!-- Other Calculated Values -->
+            <div class="slds-grid slds-wrap slds-m-top_medium">
+                <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                    <p><strong>Federal Tax:</strong> ${federalTax}</p>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                    <p><strong>Medicare:</strong> ${medicare}</p>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                    <p><strong>Social Security:</strong> ${socialSecurity}</p>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                    <p><strong>Yearly:</strong> ${yearlyPay}</p>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                    <p><strong>6-Months:</strong> ${sixmonthsPay}</p>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                    <p><strong>Monthly:</strong> ${monthlyPay}</p>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                    <p><strong>Bi-Weekly:</strong> ${biWeekly}</p>
+                </div>
+
+            </div>
+        </div>
+    </lightning-card>
+</template>
